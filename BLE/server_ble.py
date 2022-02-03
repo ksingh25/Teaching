@@ -21,7 +21,7 @@ li = LIS2HH12(py)
 pycom.heartbeat(False)
 
 
-temperature = 25
+luminosity = 25
 update = False
 
 def conn_cb(chr):
@@ -34,13 +34,13 @@ def conn_cb(chr):
         update = False
 
 def chr1_handler(chr, data):
-    global temperature
+    global luminosity
     global update
     events = chr.events()
     print("events: ",events)
     if events & (Bluetooth.CHAR_READ_EVENT | Bluetooth.CHAR_SUBSCRIBE_EVENT):
-        chr.value(str(temperature))
-        print("transmitted :", temperature)
+        chr.value(str(luminosity))
+        print("transmitted :", luminosity)
         if (events & Bluetooth.CHAR_SUBSCRIBE_EVENT):
             update = True
 
@@ -57,11 +57,11 @@ chr1 = srv1.characteristic(uuid=0xec0e, value='read_from_here') #client reads fr
 chr1.callback(trigger=(Bluetooth.CHAR_READ_EVENT | Bluetooth.CHAR_SUBSCRIBE_EVENT), handler=chr1_handler)
 print('Start BLE service')
 def update_handler(update_alarm):
-    global temperature
+    global luminosity
     global update
-    temperature = lt.light()[0]
+    luminosity = lt.light()[0]
     if update:
-        chr1.value(str(temperature))
-        print(temperature)
+        chr1.value(str(luminosity))
+        print(luminosity)
 
 update_alarm = Timer.Alarm(update_handler, 5, periodic=True)
