@@ -29,6 +29,7 @@ def conn_cb(chr):
     global update
     if events & Bluetooth.CLIENT_CONNECTED:
         print('client connected')
+        update = True
     elif events & Bluetooth.CLIENT_DISCONNECTED:
         print('client disconnected')
         update = False
