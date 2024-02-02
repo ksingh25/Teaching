@@ -1,0 +1,36 @@
+{
+	"folders": [
+		{
+			"name": "wifi",
+			"path": "."
+		},
+		{
+			"name": "serial://dev/tty.usbmodemPy343431",
+			"uri": "serial:///dev/tty.usbmodempy343431/flash"
+		},
+		{
+			"name": "serial://dev/tty.usbmodemPy343431",
+			"uri": "serial://%2fdev%2ftty.usbmodempy343431/flash"
+		}
+	],
+	"settings": {
+		"MicroPython.executeButton": [
+			{
+				"text": "▶",
+				"tooltip": "Run",
+				"alignment": "left",
+				"command": "extension.executeFile",
+				"priority": 3.5
+			}
+		],
+		"MicroPython.syncButton": [
+			{
+				"text": "$(sync)",
+				"tooltip": "sync",
+				"alignment": "left",
+				"command": "extension.execute",
+				"priority": 4
+			}
+		]
+	}
+}
